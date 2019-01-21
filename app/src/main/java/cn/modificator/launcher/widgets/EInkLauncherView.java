@@ -14,6 +14,7 @@ import android.content.res.ColorStateList;
 import android.graphics.Point;
 import android.net.Uri;
 import android.os.PowerManager;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -345,7 +346,15 @@ public class EInkLauncherView extends ViewGroup {
           .setIcon(dataList.get(position).loadIcon(packageManager))
           .setTitle(dataList.get(position).loadLabel(packageManager))
           .setMessage(getResources().getString(R.string.dialog_pkg_name, pkg))
-          .setPositiveButton(R.string.dialog_cancel, null)
+          .setPositiveButton(R.string.dialog_appdetail, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+              // ref: https://stackoverflow.com/questions/4421527/how-can-i-start-android-application-info-screen-programmatically
+              Intent appInfoIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                      Uri.parse("package:" + pkg));
+              getContext().startActivity(appInfoIntent);
+            }
+          })
           .setNeutralButton(R.string.dialog_hide, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
