@@ -96,7 +96,7 @@ public class Config {
   }
 
   public boolean getDividerHideStatus() {
-    return hideDivider = context.getSharedPreferences(preferencesFileName, Context.MODE_PRIVATE).getBoolean(Launcher.LAUNCHER_HIDE_DIVIDER, true);
+    return hideDivider = context.getSharedPreferences(preferencesFileName, Context.MODE_PRIVATE).getBoolean(Launcher.LAUNCHER_HIDE_DIVIDER, hideDivider);
   }
 
   public void setDividerHideStatus(boolean b) {
