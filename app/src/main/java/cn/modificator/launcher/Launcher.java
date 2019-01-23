@@ -383,6 +383,11 @@ public class Launcher extends Activity {
   @Override
   public boolean onKeyDown(int keyCode, KeyEvent event) {
     if (keyCode == KeyEvent.KEYCODE_BACK && getFragmentManager().getBackStackEntryCount() == 0) {
+      // convert to pressing home key
+      Intent startHome = new Intent(Intent.ACTION_MAIN);
+      startHome.addCategory(Intent.CATEGORY_HOME);
+      startActivity(startHome);
+
       return true;
     }
     return super.onKeyDown(keyCode, event);

@@ -38,7 +38,19 @@ public class AppDataCenter {
 
       @Override
       public int compare(ResolveInfo o1, ResolveInfo o2) {
+        boolean leftIsHomeApp = isHomeAppPkg(o1.activityInfo.packageName);
+        boolean rightIsHomeApp = isHomeAppPkg(o2.activityInfo.packageName);
+
+        if (leftIsHomeApp && !rightIsHomeApp)
+          return -1;
+        else if (!leftIsHomeApp && rightIsHomeApp)
+          return +1;
+
         return dispNameCmp.compare(o1, o2);
+      }
+
+      private boolean isHomeAppPkg(String pkgName) {
+        return pkgName.equals(currentHomeAppPkgName) || pkgName.equals("com.ridi.paper");
       }
     };
 
@@ -105,6 +117,15 @@ public class AppDataCenter {
     updatePageCount();
   }
 
+  private String currentHomeAppPkgName;
+  private String getCurrentHomeApp() {
+    PackageManager localPackageManager = mContext.getPackageManager();
+    Intent intent = new Intent("android.intent.action.MAIN");
+    intent.addCategory("android.intent.category.HOME");
+
+    return localPackageManager.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY).resolvePackageName;
+  }
+
   public void showNextPage() {
     if (pageIndex >= pageCount) return;
     pageIndex++;
@@ -143,6 +164,8 @@ public class AppDataCenter {
   }
 
   private void sortAppList() {
+    currentHomeAppPkgName = getCurrentHomeApp();
+
     Collections.sort(mApps, comp);
   }
 
