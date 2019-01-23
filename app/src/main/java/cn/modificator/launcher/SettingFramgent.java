@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import java.util.Observable;
 
+import cn.modificator.launcher.filemanager.FileManager;
 import cn.modificator.launcher.ftpservice.FTPService;
 
 /**
@@ -93,6 +94,7 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
     rootView.findViewById(R.id.changeFontSize).setOnClickListener(this);
     rootView.findViewById(R.id.helpAbout).setOnClickListener(this);
     rootView.findViewById(R.id.menu_ftp).setOnClickListener(this);
+    rootView.findViewById(R.id.fileManager).setOnClickListener(this);
 
     font_control.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
       @Override
@@ -162,6 +164,11 @@ public class SettingFramgent extends Fragment implements View.OnClickListener {
         } else {
           stopServer();
         }
+        break;
+
+      case R.id.fileManager:
+        Intent i = new Intent(getActivity().getApplicationContext(), FileManager.class);
+        getActivity().startActivity(i);
         break;
     }
   }

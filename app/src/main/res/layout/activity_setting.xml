@@ -508,6 +508,19 @@
                 android:text="ftp://192.168.123.121" />
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#000000" />
+
+        <TextView
+            android:id="@+id/fileManager"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="@string/file_manager"
+            android:textSize="16sp" />
 
         <View
             android:layout_width="match_parent"
