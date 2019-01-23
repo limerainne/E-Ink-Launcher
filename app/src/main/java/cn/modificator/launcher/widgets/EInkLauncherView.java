@@ -13,6 +13,7 @@ import android.content.pm.ResolveInfo;
 import android.content.res.ColorStateList;
 import android.graphics.Point;
 import android.net.Uri;
+import android.os.Environment;
 import android.os.PowerManager;
 import android.provider.Settings;
 import android.util.AttributeSet;
@@ -98,8 +99,9 @@ public class EInkLauncherView extends ViewGroup {
   public void refreshReplaceIcon() {
     this.iconReplaceFile.clear();
     this.iconReplacePkg.clear();
-    if (getContext().getExternalCacheDir() == null) return;
-    File iconFileRoot = new File(getContext().getExternalCacheDir().getParentFile().getParentFile().getParentFile().getParentFile(), "E-Ink Launcher" + File.separator + "icon");
+
+    if (Environment.getExternalStorageDirectory() == null) return;
+    File iconFileRoot = new File(Environment.getExternalStorageDirectory(), "E-Ink Launcher" + File.separator + "icon");
     if (iconFileRoot == null || iconFileRoot.listFiles() == null) return;
     for (File file : iconFileRoot.listFiles()) {
       this.iconReplaceFile.add(file);

@@ -17,6 +17,7 @@
     <string name="dialog_hide">숨기기</string>
     <string name="dialog_pkg_name">패키지 이름: %s</string>
     <string name="dialog_uninstall">제거</string>
+    <string name="dialog_appdetail">앱 정보</string>
     <string name="empty_directory_hint">빈 디렉토리</string>
     <string name="exit">종료</string>
     <string name="file_manager">파일 탐색기</string>
@@ -32,7 +33,7 @@
     <string name="setting_column_icons">열</string>
     <string name="setting_help_and_about">도움말 &amp; 정보</string>
     <string name="setting_hide_divider">구분선 숨김</string>
-    <string name="setting_row_icons">"   행   "</string>
+    <string name="setting_row_icons">행</string>
     <string name="setting_set_font_size">폰트 크기 설정</string>
     <string name="setting_show_divider">구분선 표시</string>
     <string name="start_path_name">기기</string>

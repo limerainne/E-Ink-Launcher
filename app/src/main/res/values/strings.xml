@@ -3,7 +3,7 @@
     <string name="file_manager">File Manager</string>
 
     <string name="empty_directory_hint">Empty directory</string>
-    <string name="start_path_name" translatable="false">Device</string>
+    <string name="start_path_name">Device</string>
     <string name="type_archive">Archive</string>
     <string name="type_certificate">Certificate</string>
     <string name="type_directory">Directory</string>
