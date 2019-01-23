@@ -216,19 +216,22 @@ public class Launcher extends Activity {
       boolean is24Hour = DateFormat.is24HourFormat(this);
       mCalendar.setTimeInMillis(System.currentTimeMillis());
 
-      StringBuilder timeFormatTextBuilder = new StringBuilder("yyyy-MM-dd ");
-      if (!is24Hour && isChina) {
-        timeFormatTextBuilder.append(Utils.getAMPMCNString(mCalendar.get(Calendar.HOUR), mCalendar.get(Calendar.AM_PM)));
+      StringBuilder timeFormatTextBuilder = new StringBuilder("yyyy-MM-dd EEEE");
+      if (!is24Hour) {
+        timeFormatTextBuilder.append(" ");
+        if (isChina) {
+          timeFormatTextBuilder.append(Utils.getAMPMCNString(mCalendar.get(Calendar.HOUR), mCalendar.get(Calendar.AM_PM)));
+        }
+        else {
+          timeFormatTextBuilder.append("a");
+        }
       }
+      timeFormatTextBuilder.append(" ");
       if (is24Hour) {
         timeFormatTextBuilder.append("HH:mm");
       } else {
         timeFormatTextBuilder.append("hh:mm");
       }
-      if (!is24Hour && !isChina) {
-        timeFormatTextBuilder.append(" a");
-      }
-      timeFormatTextBuilder.append(" EEEE");
       textClock.setText(DateFormat.format(timeFormatTextBuilder.toString(), mCalendar));
     }
   }
