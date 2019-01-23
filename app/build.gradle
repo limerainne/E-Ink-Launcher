@@ -66,6 +66,8 @@ dependencies {
     implementation 'androidx.documentfile:documentfile:1.0.0'
     implementation 'org.apache.ftpserver:ftplet-api:1.1.0'
     implementation 'org.apache.ftpserver:ftpserver-core:1.1.0'
+
+    api 'com.jrummyapps:android-shell:1.0.1'
 }
 /*
 android.applicationVariants.all { variant ->

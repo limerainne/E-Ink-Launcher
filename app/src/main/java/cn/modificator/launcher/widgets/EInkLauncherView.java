@@ -23,6 +23,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.jrummyapps.android.shell.Shell;
+
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
@@ -159,7 +161,33 @@ public class EInkLauncherView extends ViewGroup {
             view.setOnLongClickListener(new OnLongClickListener() {
               @Override
               public boolean onLongClick(View v) {
-                if (!isSystemApp) return true;
+                if (!isSystemApp) {
+                    // do restart/shutdown with root permission
+                    new AlertDialog.Builder(v.getContext())
+                            .setTitle(R.string.power_title)
+                            .setItems(R.array.power_menu, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if (which == 0) {
+                                        // shutdown.. expect at least one of below commands effective
+                                        Shell.SU.run("am start -a com.android.internal.intent.action.REQUEST_SHUTDOWN");
+                                        Shell.SU.run("am start -n android/com.android.internal.app.ShutdownActivity");
+                                        Shell.SU.run("svc power shutdown");
+
+                                    } else {
+                                        // reboot.. expect at least one of below commands effective
+                                        Shell.SU.run("am start -a android.intent.action.REBOOT");
+                                        Shell.SU.run("svc power reboot");
+
+                                    }
+                                }
+                            })
+                            .setPositiveButton(android.R.string.cancel, null)
+                            .show();
+
+                    return true;
+                }
+
                 new AlertDialog.Builder(v.getContext())
                     .setTitle(R.string.power_title)
                     .setItems(R.array.power_menu, new DialogInterface.OnClickListener() {
